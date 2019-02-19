@@ -3,7 +3,6 @@ import org.jsoup.nodes.Document;
 import org.jsoup.nodes.Element;
 import org.jsoup.select.Elements;
 
-import java.io.IOException;
 import java.util.ArrayList;
 
 public class OfferList {
@@ -45,17 +44,36 @@ public class OfferList {
     public boolean separeContent(Document page) {
         Elements temp;
         ArrayList<String> tempList = new ArrayList<>();
+        Elements burn;
         Elements name;
         ArrayList<String> nameList = new ArrayList<>();
         if(!page.equals(null)) {
-             temp = page.select("span[class='cept-vote-temp vote-temp vote-temp--hot']");
+            if(page.select("span[class='cept-vote-temp vote-temp vote-temp--hot']").hasText()) {
+                temp = page.select("span[class='cept-vote-temp vote-temp vote-temp--hot']");
+            } else {
+                temp = null;
+            }
+
+            if ((page.select("span[class='cept-vote-temp vote-temp vote-temp--burn']").hasText())){
+                burn = page.select("span[class='cept-vote-temp vote-temp vote-temp--burn']");
+            } else {
+                burn = null;
+            }
+
+            System.out.println();
              name = page.select("a[class='cept-tt thread-link linkPlain thread-title--card']");
              if(!temp.equals(null) && !name.equals(null)) {
+                 int iter = 0;
                  for(Element x : temp) {
+                     iter++;
                      tempList.add(x.text());
+                     System.out.println(iter + ". " + x.text());
                  }
+                 iter = 0;
                  for(Element x : name) {
+                     iter++;
                      nameList.add(x.text());
+                     //System.out.println(iter + ". " + x.text());
                  }
                  for(int i=0; i < tempList.size()-1; i++){
                      addElement(new Offer(nameList.get(i),tempList.get(i)));
@@ -73,7 +91,7 @@ public class OfferList {
 
     public void showList() {
         for(int i=0; i < offerList.size()-1; i++) {
-            System.out.println(offerList.get(i).getOfferName() + "      " + offerList.get(i).getOfferTemp());
+            //System.out.println(offerList.get(i).getOfferName() + "      " + offerList.get(i).getOfferTemp());
         }
     }
 }
