@@ -4,6 +4,8 @@ import org.jsoup.nodes.Element;
 import org.jsoup.select.Elements;
 
 import java.io.IOException;
+import java.util.HashMap;
+import java.util.Map;
 
 public class Main {
 
@@ -14,7 +16,7 @@ public class Main {
         for(Element x: num){
             System.out.println(y + ". " + x.text());
             y++;*/
-       OfferList pepperek = new OfferList("https://www.pepper.pl/");
-       pepperek.showList();
+        OfferList pepperek = new OfferList("https://www.pepper.pl/");
+        pepperek.showList();
     }
 }

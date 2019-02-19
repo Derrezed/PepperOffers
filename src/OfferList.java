@@ -42,56 +42,33 @@ public class OfferList {
     }
 
     public boolean separeContent(Document page) {
-        Elements temp;
-        ArrayList<String> tempList = new ArrayList<>();
-        Elements burn;
-        Elements name;
-        ArrayList<String> nameList = new ArrayList<>();
-        if(!page.equals(null)) {
-            if(page.select("span[class='cept-vote-temp vote-temp vote-temp--hot']").hasText()) {
-                temp = page.select("span[class='cept-vote-temp vote-temp vote-temp--hot']");
-            } else {
-                temp = null;
-            }
+        String temp;
+        String name;
 
-            if ((page.select("span[class='cept-vote-temp vote-temp vote-temp--burn']").hasText())){
-                burn = page.select("span[class='cept-vote-temp vote-temp vote-temp--burn']");
-            } else {
-                burn = null;
-            }
+        Elements elem = page.select("div[class='gridLayout-item threadCardLayout--card']");
+        try {
+            for (Element x : elem) {
+                if (x.select("span[class='cept-vote-temp vote-temp vote-temp--hot']").hasText()) {
+                    temp = x.select("span[class='cept-vote-temp vote-temp vote-temp--hot']").text();
 
-            System.out.println();
-             name = page.select("a[class='cept-tt thread-link linkPlain thread-title--card']");
-             if(!temp.equals(null) && !name.equals(null)) {
-                 int iter = 0;
-                 for(Element x : temp) {
-                     iter++;
-                     tempList.add(x.text());
-                     System.out.println(iter + ". " + x.text());
-                 }
-                 iter = 0;
-                 for(Element x : name) {
-                     iter++;
-                     nameList.add(x.text());
-                     //System.out.println(iter + ". " + x.text());
-                 }
-                 for(int i=0; i < tempList.size()-1; i++){
-                     addElement(new Offer(nameList.get(i),tempList.get(i)));
-                 }
-             } else {
-                 System.out.println("OfferList: method separeContent second 'if' went to else");
-                 return false;
-             }
+                } else {
+
+                    temp = x.select("span[class='cept-vote-temp vote-temp vote-temp--burn']").text();
+                }
+                name = x.select("a[class='cept-tt thread-link linkPlain thread-title--card']").text();
+                offerList.add(new Offer(name,temp));
+            }
             return true;
-        } else {
-            System.out.println("OfferList: method separeContent first 'if' went to else");
+        } catch (Exception ex) {
+            System.out.println(ex.toString());
             return false;
         }
     }
 
     public void showList() {
+        System.out.println("SizeOfOfferList: " + offerList.size());
         for(int i=0; i < offerList.size()-1; i++) {
-            //System.out.println(offerList.get(i).getOfferName() + "      " + offerList.get(i).getOfferTemp());
+            System.out.println(offerList.get(i).getOfferName() + "      " + offerList.get(i).getOfferTemp());
         }
     }
 }
