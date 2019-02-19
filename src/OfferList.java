@@ -71,4 +71,8 @@ public class OfferList {
             System.out.println(offerList.get(i).getOfferName() + "      " + offerList.get(i).getOfferTemp());
         }
     }
+
+    public int listSize() {
+        return this.offerList.size();
+    }
 }
