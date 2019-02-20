@@ -1,4 +1,5 @@
 import javax.swing.*;
+import javax.swing.table.DefaultTableModel;
 import java.awt.*;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
@@ -9,7 +10,7 @@ public class Window extends JFrame implements ActionListener {
     private JButton getAnswer = new JButton("Get results");
     private OfferList pepperek = new OfferList("https://www.pepper.pl/");
     private JTable table;
-
+    private String[] columnNames = {"Name", "Temperature"};
 
     public Window() {
         super("PepperOffers");
@@ -20,7 +21,7 @@ public class Window extends JFrame implements ActionListener {
         setLayout(new GridLayout(2,1));
         add(getAnswer);
         getAnswer.addActionListener(this::actionPerformed);
-        table = new JTable(pepperek.listSize(),1);
+        DefaultTableModel tableModel = new DefaultTableModel(columnNames,0);
         add(table);
     }
 
@@ -36,6 +37,14 @@ public class Window extends JFrame implements ActionListener {
                 table.setValueAt(offer.getOfferName(), row, 0);
                 row++;
             }
+        }
+    }
+
+    public String[][] getData() {
+        ArrayList<Offer> offerList =  pepperek.getList();
+        for(Offer offer : offerList) {
+            data = [{offer.getOfferName(), offer.getOfferTemp()}];
+
         }
     }
 }
