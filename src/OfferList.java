@@ -75,4 +75,8 @@ public class OfferList {
     public int listSize() {
         return this.offerList.size();
     }
+
+    public ArrayList<Offer> getList(){
+        return this.offerList;
+    }
 }
