@@ -11,6 +11,7 @@ public class Window extends JFrame implements ActionListener {
     private OfferList pepperek = new OfferList("https://www.pepper.pl/");
     private JTable table;
     private String[] columnNames = {"Name", "Temperature"};
+    private DefaultTableModel tableModel = new DefaultTableModel(columnNames,0);
 
     public Window() {
         super("PepperOffers");
@@ -18,10 +19,10 @@ public class Window extends JFrame implements ActionListener {
         setSize(300,800);
         setLocation(50,50);
         setVisible(true);
-        setLayout(new GridLayout(2,1));
+        setLayout(new GridLayout(2,2));
         add(getAnswer);
         getAnswer.addActionListener(this::actionPerformed);
-        DefaultTableModel tableModel = new DefaultTableModel(columnNames,0);
+        table = new JTable(tableModel);
         add(table);
     }
 
@@ -33,18 +34,15 @@ public class Window extends JFrame implements ActionListener {
             pepperek.showList();
             ArrayList<Offer> offerList =  pepperek.getList();
             int row = 0;
+            String name;
+            String temp;
             for(Offer offer : offerList) {
-                table.setValueAt(offer.getOfferName(), row, 0);
+                name = offer.getOfferName();
+                temp = offer.getOfferTemp();
+                Object[] data = {name,temp};
+                tableModel.addRow(data);
                 row++;
             }
-        }
-    }
-
-    public String[][] getData() {
-        ArrayList<Offer> offerList =  pepperek.getList();
-        for(Offer offer : offerList) {
-            data = [{offer.getOfferName(), offer.getOfferTemp()}];
-
         }
     }
 }

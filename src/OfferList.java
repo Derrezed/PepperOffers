@@ -50,9 +50,9 @@ public class OfferList {
             for (Element x : elem) {
                 if (x.select("span[class='cept-vote-temp vote-temp vote-temp--hot']").hasText()) {
                     temp = x.select("span[class='cept-vote-temp vote-temp vote-temp--hot']").text();
-
+                } else if(x.select("span[class='space--h-2 text--b']").hasText()) {
+                    temp = x.select("span[class='space--h-2 text--b']").text() + "  ZAKOńCZONA";
                 } else {
-
                     temp = x.select("span[class='cept-vote-temp vote-temp vote-temp--burn']").text();
                 }
                 name = x.select("a[class='cept-tt thread-link linkPlain thread-title--card']").text();
