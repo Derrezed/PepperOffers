@@ -8,29 +8,29 @@ import java.util.ArrayList;
 public class OfferList {
     private ArrayList<Offer> offerList;
     private Document page;
+    private String site = "https://www.pepper.pl/";
 
-    public OfferList(String site) {
-        if(downloadPage(site).equals(null)) {
+    public OfferList() {
+        /*if(downloadPage(site).equals(null)) {
             System.out.println("OfferList: method downloadPage("
                     + site + ") returns null");
         } else {
             this.page = downloadPage(site);
-        }
+        }*/
         this.offerList = new ArrayList<>();
-        separeContent(page);
+        //separeContent(page);
     }
 
-    public Document downloadPage(String site) {
+    public void downloadPage(String site) {
         try {
             Document page = Jsoup.connect(site).get();
-            return page;
+            separeContent(page);
         } catch (Exception e) {
             System.out.println("Error! " + e.toString());
-            return null;
         }
     }
 
-    public boolean addElement(Offer element) {
+    /*public boolean addElement(Offer element) {
         if(element.equals(null)) {
             System.out.println("OfferList: method addElement tries to" +
                     " add null object");
@@ -39,11 +39,14 @@ public class OfferList {
             offerList.add(element);
             return true;
         }
-    }
+    }*/
 
     public boolean separeContent(Document page) {
         String temp;
         String name;
+        if(!offerList.isEmpty()){
+            offerList.removeAll(offerList);
+        }
 
         Elements elem = page.select("div[class='gridLayout-item threadCardLayout--card']");
         try {
@@ -78,5 +81,13 @@ public class OfferList {
 
     public ArrayList<Offer> getList(){
         return this.offerList;
+    }
+
+    public String getSite() {
+        return site;
+    }
+
+    public void setSite(String site) {
+        this.site = site;
     }
 }
