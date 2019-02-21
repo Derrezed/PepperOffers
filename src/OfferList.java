@@ -11,14 +11,7 @@ public class OfferList {
     private String site = "https://www.pepper.pl/";
 
     public OfferList() {
-        /*if(downloadPage(site).equals(null)) {
-            System.out.println("OfferList: method downloadPage("
-                    + site + ") returns null");
-        } else {
-            this.page = downloadPage(site);
-        }*/
         this.offerList = new ArrayList<>();
-        //separeContent(page);
     }
 
     public void downloadPage(String site) {
@@ -30,16 +23,6 @@ public class OfferList {
         }
     }
 
-    /*public boolean addElement(Offer element) {
-        if(element.equals(null)) {
-            System.out.println("OfferList: method addElement tries to" +
-                    " add null object");
-            return false;
-        } else {
-            offerList.add(element);
-            return true;
-        }
-    }*/
 
     public boolean separeContent(Document page) {
         String temp;
@@ -75,19 +58,7 @@ public class OfferList {
         }
     }
 
-    public int listSize() {
-        return this.offerList.size();
-    }
-
     public ArrayList<Offer> getList(){
         return this.offerList;
-    }
-
-    public String getSite() {
-        return site;
-    }
-
-    public void setSite(String site) {
-        this.site = site;
     }
 }
