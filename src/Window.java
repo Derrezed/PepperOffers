@@ -17,7 +17,7 @@ public class Window extends JFrame implements ActionListener {
     public Window() {
         super("PepperOffers");
         setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
-        setSize(300,800);
+        setSize(300,700);
         setLocation(50,50);
         setVisible(true);
         setLayout(new GridLayout(2,2));
@@ -43,7 +43,7 @@ public class Window extends JFrame implements ActionListener {
         }
     }
 
-    public boolean puttingData() {
+    public void puttingData() {
         try {
             pepperek.showList();
             ArrayList<Offer> offerList = pepperek.getList();
@@ -57,10 +57,8 @@ public class Window extends JFrame implements ActionListener {
                 tableModel.addRow(data);
                 row++;
             }
-            return true;
         } catch (Exception e){
             System.out.println(e.toString());
-            return false;
         }
     }
 }
