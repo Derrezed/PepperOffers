@@ -79,7 +79,6 @@ public class Window extends JFrame implements ActionListener {
         try {
             pepperek.showList();
             ArrayList<Offer> offerList = pepperek.getList();
-            int row = 0;
             String name;
             String temp;
             for (Offer offer : offerList) {
@@ -87,7 +86,6 @@ public class Window extends JFrame implements ActionListener {
                 temp = offer.getOfferTemp();
                 Object[] data = {name, temp};
                 tableModel.addRow(data);
-                row++;
             }
         } catch (Exception e){
             System.out.println(e.toString());
