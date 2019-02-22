@@ -11,4 +11,4 @@ This application shows list of offers downloaded from [peppper](https://www.pepp
 ## Author
 - Grzegorz Tkaczyk
 ## Licence
-The application is shared under the MIT license.
+The application is shared under the [MIT license](https://opensource.org/licenses/MIT).
