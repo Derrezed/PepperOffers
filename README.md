@@ -1,5 +1,5 @@
 # Pepper Offers  
-This application shows list of offers downloaded from [peppper](https://www.pepper.pl/) website.
+This application shows list of offers downloaded from [pepper](https://www.pepper.pl/) website.
 ## Status
 [![Build Status](https://travis-ci.com/FloofDoggo/PepperOffers.svg?branch=master)](https://travis-ci.com/FloofDoggo/PepperOffers)
 ## Functionalities
